@@ -9,6 +9,8 @@
 </head>
 <body>
     <div id="app">
+        <div v-text="test"></div>
+        <div v-html="test"></div>
     </div>
 
     <script>
@@ -16,6 +18,7 @@
             el: '#app',
             data(){
                 return {
+                    test: 'あああ<br>いいい'
                 }
             }
 
