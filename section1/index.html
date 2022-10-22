@@ -9,6 +9,12 @@
 </head>
 <body>
     <div id="app">
+        <button id="clickEvent" onclick="btnClicked()">JSクリックしてね</button>
+        <!-- <button v-on:click="btnClicked">クリックしてね</button> -->
+        <button @click="btnClicked">クリックしてね</button>
+        <button @click="btnClickedEvent">Eventクリックしてね</button>
+        <button @click="btnClickedArgs(1)">Argsクリックしてね</button>
+        <button @click="btnClickedArgsEvent(1, $event)">ArgsEventクリックしてね</button>
     </div>
 
     <script>
@@ -17,8 +23,31 @@
             data(){
                 return {
                 }
+            },
+            methods:{
+                btnClicked(){
+                    console.log('Vueクリックされた')
+                },
+                btnClickedEvent(e){
+                    console.log(e);
+                },
+                btnClickedArgs(int){
+                    console.log(int);
+                },
+                btnClickedArgsEvent(int, e){
+                    console.log(int, e);
+                },
             }
 
+        })
+        // JS
+        function btnClicked(){
+            console.log('JSクリックされた');
+        }
+
+        const clickEvent = document.getElementById('clickEvent');
+        clickEvent.addEventListener('click', (e)=>{
+            console.log(e);
         })
     </script>
 </body>
