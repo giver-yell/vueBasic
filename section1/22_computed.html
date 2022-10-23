@@ -10,7 +10,7 @@
 <body>
     <div id="app">  <!-- 仮想DOM -->
         {{ totalPriceMethods() }}
-        {{ totalPriceMethods(   ) }}
+        {{ totalPriceMethods() }}
 
 
         {{ totalPrice }}
@@ -34,27 +34,14 @@
                 }
             },
             computed: {
-                // totalPrice(){
-                //     return this.number * this.price
-                // }
-                totalPrice: app => app.number * app.price
+                totalPrice(){
+                    console.log('computedです')
+                    return this.number * this.price
+                }
             },
             watch: {},
+
         })
-
-        console.log(this) // windowオブジェクト
-
-        const obj = {
-            test: function(){
-                console.log(this) // そのオブジェクト
-            }
-        }
-
-        const objArrow = {
-            test: () => {
-                console.log(this) // windowオブジェクト
-            }
-        }
     </script>
 </body>
 </html>
