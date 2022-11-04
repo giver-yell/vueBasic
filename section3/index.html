@@ -23,8 +23,11 @@
         </p>
         <form @submit.prevent="validate">
             氏名
-            <input type="text" v-model="contact.yourName">
+            <input type="text" v-model="yourName"> <!-- computedで監視している値 -->
             <br>
+            <p :class="{error: hasError.yourname}"> {{ contact.yourName.length }} / 20 </p>
+            <p v-show="hasError.yourName" class="error">氏名は20文字以内で入力てください</p>
+
             電話番号
             <input type="tel" v-model.number="contact.tel">
             <br>
@@ -76,7 +79,10 @@
                         attracts: [],
                         caution: false
                     },
-                    errors: []
+                    errors: [],
+                    hasError: {
+                        yourName: false
+                    }
                 }
             },
             methods: {
@@ -97,8 +103,20 @@
                         console.log('送信可能です')
                     }
                 }
+            },
+            computed: {
+                yourName: {
+                    get() {
+                        return this.contact.yourName
+                    },
+                    set(value) {
+                        if (value.length > 20) {
+                            this.hasError.yourName = true
+                        }
+                        this.contact.yourName = value
+                    }
+                }
             }
-
         })
     </script>
 </body>
